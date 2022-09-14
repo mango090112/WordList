@@ -8,7 +8,15 @@ words = [
 ]
 nextId = len(words) + 1
 
-def template(content):
+def template(content, id=None):
+    detailHtml = ''
+    if id != None:
+        detailHtml = f'''
+        <ul>
+        <li><a href="/update/{id}">update</a></li>
+        <li><a href="/delete/{id}">delete</a></li>
+        </ul>
+        '''
     html = f'''<html><head></head><body>
             <h1><a href="/">단어장</a></h1>
             <ol>
@@ -17,6 +25,7 @@ def template(content):
                 <li><a href="/create/">create</a></li>
             </ol>
             {content}
+            {detailHtml}
         </body></html>'''
     
     return html
@@ -43,7 +52,53 @@ def create():
         newword = {'id':nextId, 'english':english, 'korean':korean}
         words.append(newword)
         nextId += 1
-        return redirect('/')
+        return redirect(f'/read/{newword["nextId"]}')
+
+@app.route('/update/<int:id>/', methods=['GET', 'POST'])
+def update(id):
+    english = ''
+    korean = ''
+    for word in words:
+        if id == word['id']:
+            english = word['english']
+            korean = word['korean']
+            break
+
+    if request.method == 'GET':
+        content = f'''<form action="/update/" method="POST">
+            <p><input type="text" name="english" placeholder="영어단어" value="{english}"></p>
+            <p><textarea name="korean" placeholder="뜻">{korean}</textarea></p>
+            <p><input type="submit" value="update"></p>
+            </form>'''
+        return template(content)
+    elif request.method == 'POST':
+        global nextId
+        english = request.form['english']
+        korean = request.form['korean']
+        newword = {'id':nextId, 'english':english, 'korean':korean}
+        words.append(newword)
+        nextId += 1
+        return redirect(f'/read/{newword["nextId"]}')
+
+@app.route('/reads/')
+def reads():
+    liTags = ''
+    for word in words:
+        liTags += f'''<li><a href="/read/{word["id"]}">{word["english"]}</a> {word["korean"]}</li>'''
+    return template(liTags)
+
+@app.route('/read/<int:id>/')
+def read(id):
+    english = ''
+    korean = ''
+    for word in words:
+        if id == word['id']:
+            english = word['english']
+            korean = word['korean']
+            break
+    content = f'''<h2>{english}</h2>
+    <p>{korean}</p>'''
+    return template(content, id)
 
 if __name__ == '__main__':
     app.run(debug=True)
