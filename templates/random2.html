@@ -1,0 +1,20 @@
+<html><head></head><body>
+    <h1><a href="/">단어장</a></h1>
+    <ol>
+        <li><a href="/random/">random</a></li>
+        <li><a href="/random2/">random2</a></li>
+        <li><a href="/reads/">reads</a></li>
+        <li><a href="/create/">create</a></li>
+    </ol>
+    <h2>{{answer['korean']}}</h2>
+<ol>
+    {% for word in sample %}
+    <li>{{word['english']}}</li>   
+    {% endfor %}
+</ol>    
+<p></p><details><summary>정답</summary>
+{{answer['korean']}}, {{answer['english']}}</details><p></p>
+<br>
+<a href="/random2/">next</a>
+    
+</body></html>
