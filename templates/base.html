@@ -1,0 +1,25 @@
+<html><head>
+    <style>
+        footer {
+            position: fixed;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            text-align: center;
+        }
+    </style>
+</head><body>
+    <h1><a href="/">단어장</a></h1>
+    <ol>
+        <li><a href="/random/">퀴즈(영어)</a></li>
+        <li><a href="/random2/">퀴즈(한국어)</a></li>
+        <li><a href="/reads/">목록</a></li>
+        <li><a href="/create/">추가</a></li>
+    </ol>
+    {% block content %}
+    {% endblock %}
+</body>
+<footer>
+    <p>Copyright &copy; ys</p>
+</footer>
+</html>

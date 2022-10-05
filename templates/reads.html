@@ -1,24 +1,8 @@
-<html><head></head><body>
-    <h1><a href="/">단어장</a></h1>
-    <ol>
-        <li><a href="/random/">random</a></li>
-        <li><a href="/random2/">random2</a></li>
-        <li><a href="/reads/">reads</a></li>
-        <li><a href="/create/">create</a></li>
-    </ol>
-    <ul>
-        {% for word in words %}
-        <li><a href="/read/{{word['id']}}/">{{word['english']}}</a> {{word['korean']}}</li>
-        {% endfor %}
-    </ul>
-    <!-- <li><a href="/read/1">whale</a> 고래</li>
-    <li><a href="/read/2">age</a> 나이</li>
-    <li><a href="/read/3">ago</a> 이전에</li>
-    <li><a href="/read/4">activity</a> 활동</li>
-    <li><a href="/read/5">take</a> 가져가다</li>
-    <li><a href="/read/6">problem</a> 문제</li>
-    <li><a href="/read/7">also</a> 또한</li>
-    <li><a href="/read/8">future</a> 미래</li>
-    <li><a href="/read/9">language</a> 언어</li>
-    <li><a href="/read/10">dialogue</a> 대화</li> -->
-</body></html>
+{% extends 'base.html' %}
+{% block content %}
+<ul>
+    {% for word in words %}
+    <li><a href="/read/{{word['id']}}/">{{word['english']}}</a> {{word['korean']}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
