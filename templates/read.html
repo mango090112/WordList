@@ -1,28 +1,10 @@
-<html>
-    <head>
-        <style>
-            .btn {
-                border: 1px solid skyblue;
-                background-color:rgba(0, 0, 0, 0);
-                color:skyblue;
-                padding:5px;
-                border-radius:5px;
-            }
-        </style>
-    </head>
-    <body>
-        <h1><a href="/">Blog</a></h1>
-        <ul>
-            <li><a href="/reads/" class="btn">read</a></li>
-            <li><a href="/create/">create</a></li>
-        </ul>
-        <h2>{{title}}</h2>
-        <p>{{content}}</p>
-        <!-- <li><a href="/edit/{{id}}/">edit</a></li> -->
-        <!-- <from action="/edit/{{id}}/" method="GET">
-        <input type="submit" value="edit"></from> -->
-        <button type="button" onclick="location.href='/edit/{{id}}/';">edit</button>
-        <form action="/delete/{{id}}/" method="POST">
-        <input type="submit" value="delete"></form>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{english}}</h2>
+<p>{{korean}}</p>
+<ul>
+<li><a href="/update/{{id}}/">update</a></li>
+<li><form action="/delete/{{id}}/" method="POST">
+<input type="submit" value="delete"></form></li>
+</ul>
+{% endblock %}
