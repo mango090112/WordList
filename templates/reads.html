@@ -1,16 +1,8 @@
-<html>
-    <head></head>
-    <body>
-        <h1><a href="/">Blog</a></h1>
-        <ul>
-            <li><a href="/reads/">read</a></li>
-            <li><a href="/create/">create</a></li>
-        </ul>
-        <h2>Read</h2>
-        <ul>
-            {% for text in texts %}
-            <li><a href="/read/{{text['id']}}/">{{text['title']}}</a></li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<ul>
+    {% for word in words %}
+    <li><a href="/read/{{word['id']}}/">{{word['english']}}</a> {{word['korean']}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
